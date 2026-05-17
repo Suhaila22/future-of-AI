@@ -1,0 +1,411 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;700&family=Cairo:wght@300;400;600;700&display=swap');
+
+  * { box-sizing: border-box; }
+
+  .blog-wrap {
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+    color: var(--color-text-primary);
+  }
+
+  .tag-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 1.5rem;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+
+  .tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 4px 12px;
+    border-radius: 100px;
+  }
+
+  .tag-ai { background: #EEEDFE; color: #3C3489; }
+  .tag-tech { background: #E1F5EE; color: #085041; }
+
+  .read-time {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .hero-title {
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 0 0 1rem;
+    letter-spacing: 0;
+  }
+
+  .hero-title em {
+    font-style: normal;
+    color: #534AB7;
+    border-bottom: 3px solid #534AB7;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    color: var(--color-text-secondary);
+    font-weight: 300;
+    line-height: 1.9;
+    margin: 0 0 2rem;
+    border-right: 3px solid #534AB7;
+    border-left: none;
+    padding-right: 1rem;
+    padding-left: 0;
+  }
+
+  .author-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 1rem 0;
+    border-top: 0.5px solid var(--color-border-tertiary);
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    margin-bottom: 2.5rem;
+    flex-direction: row-reverse;
+  }
+
+  .avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #534AB7, #1D9E75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: 'Cairo', sans-serif;
+  }
+
+  .author-name { font-size: 14px; font-weight: 600; margin: 0; }
+  .author-date { font-size: 12px; color: var(--color-text-secondary); margin: 0; }
+
+  .share-btn {
+    margin-right: auto;
+    font-size: 12px;
+    padding: 6px 14px;
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: 100px;
+    cursor: pointer;
+    background: transparent;
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Cairo', sans-serif;
+  }
+
+  .share-btn:hover { background: var(--color-background-secondary); }
+
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 2rem 0;
+  }
+
+  .stat-card {
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Cairo', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0;
+    color: #534AB7;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    margin: 4px 0 0;
+    line-height: 1.5;
+  }
+
+  .body-text {
+    font-size: 1rem;
+    line-height: 2;
+    color: var(--color-text-primary);
+    margin: 0 0 1.5rem;
+    font-weight: 400;
+  }
+
+  .section-heading {
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 2.5rem 0 0.75rem;
+  }
+
+  .callout {
+    background: #EEEDFE;
+    border-right: 3px solid #534AB7;
+    border-left: none;
+    border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+    padding: 1rem 1.25rem;
+    margin: 2rem 0;
+  }
+
+  .callout p {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: #3C3489;
+    font-family: 'Noto Naskh Arabic', serif;
+    font-weight: 500;
+  }
+
+  .timeline {
+    position: relative;
+    margin: 2rem 0;
+    padding-right: 1.5rem;
+    padding-left: 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    left: auto;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: #CECBF6;
+  }
+
+  .tl-item {
+    position: relative;
+    margin-bottom: 1.5rem;
+    padding-right: 1rem;
+    padding-left: 0;
+  }
+
+  .tl-dot {
+    position: absolute;
+    right: -1.55rem;
+    left: auto;
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #534AB7;
+    border: 2px solid var(--color-background-primary);
+  }
+
+  .tl-year {
+    font-size: 12px;
+    font-weight: 600;
+    color: #534AB7;
+    margin: 0 0 2px;
+  }
+
+  .tl-text {
+    font-size: 0.9rem;
+    color: var(--color-text-primary);
+    margin: 0;
+    font-weight: 400;
+    line-height: 1.8;
+  }
+
+  .topic-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 1.5rem 0;
+  }
+
+  .topic-card {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 1rem;
+  }
+
+  .topic-icon {
+    font-size: 20px;
+    color: #534AB7;
+    margin-bottom: 6px;
+  }
+
+  .topic-title { font-size: 14px; font-weight: 600; margin: 0 0 4px; }
+  .topic-desc { font-size: 12px; color: var(--color-text-secondary); margin: 0; line-height: 1.7; }
+
+  .cta-bar {
+    background: #EEEDFE;
+    border-radius: var(--border-radius-lg);
+    padding: 1.5rem;
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+
+  .cta-title {
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+    color: #3C3489;
+  }
+
+  .cta-sub { font-size: 13px; color: #534AB7; margin: 0 0 1rem; }
+
+  .cta-btn {
+    background: #534AB7;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+  }
+
+  .cta-btn:hover { background: #3C3489; }
+</style>
+
+<div class="blog-wrap">
+  <h2 class="sr-only">مقال: مستقبل الذكاء الاصطناعي — الفرص والمخاطر وما هو قادم</h2>
+
+  <div class="tag-row">
+    <span class="tag tag-ai">ذكاء اصطناعي</span>
+    <span class="tag tag-tech">تكنولوجيا</span>
+    <span class="read-time"><i class="ti ti-clock" aria-hidden="true" style="font-size:14px"></i> ٨ دقائق قراءة</span>
+  </div>
+
+  <h1 class="hero-title">مستقبل الذكاء الاصطناعي<br>ليس ما <em>تظنّه</em></h1>
+
+  <p class="subtitle">نحن دائمًا نسأل: هل سيسرق الذكاء الاصطناعي وظائفنا؟ لكن الأجدر بنا أن نسأل سؤالًا أعمق من ذلك بكثير — أيّ عالم يجعله ممكنًا؟</p>
+
+  <div class="author-bar">
+    <div class="avatar">ذ.ا</div>
+    <div>
+      <p class="author-name">مقال احترافي</p>
+      <p class="author-date">١٦ مايو ٢٠٢٦ · التكنولوجيا والمجتمع</p>
+    </div>
+    <button class="share-btn" onclick="sendPrompt('ساعدني في مشاركة هذا المقال عن مستقبل الذكاء الاصطناعي')">
+      <i class="ti ti-share" aria-hidden="true" style="font-size:14px"></i> مشاركة
+    </button>
+  </div>
+
+  <p class="body-text">في كل عقد يظهر اختراع يعيد رسم ملامح العالم — المطبعة، والمحرك البخاري، والكهرباء، والإنترنت. لكن الذكاء الاصطناعي ليس مجرد الاسم التالي في هذه القائمة. إنه أول تقنية تُفكّر في المقابل. وهذا يغيّر كل شيء في طريقة تعاملنا معه واستعدادنا له.</p>
+
+  <div class="stat-strip">
+    <div class="stat-card">
+      <p class="stat-number">$15T</p>
+      <p class="stat-label">الأثر الاقتصادي المتوقع للذكاء الاصطناعي عالميًا بحلول 2030</p>
+    </div>
+    <div class="stat-card">
+      <p class="stat-number">800M</p>
+      <p class="stat-label">وظيفة ستتأثر بالأتمتة خلال العقد القادم</p>
+    </div>
+    <div class="stat-card">
+      <p class="stat-number">97%</p>
+      <p class="stat-label">من الأدوية الجديدة قد تُسرَّع بالذكاء الاصطناعي بحلول 2035</p>
+    </div>
+  </div>
+
+  <h2 class="section-heading">من أداة إلى شريك</h2>
+
+  <p class="body-text">طوال تاريخ البشرية، كانت الأدوات امتدادًا للجسد — المطرقة لليد، والمنظار للعين. أما الذكاء الاصطناعي فهو شيء مختلف جوهريًا؛ إنه امتداد للعقل. وحين تستطيع أداةٌ أن تُفكّر وتكتب وتُبدع وتُبرمج، فهي لم تعد أداةً بالمعنى المألوف، بل باتت شريكًا في الإدراك.</p>
+
+  <p class="body-text">التحول الحقيقي الذي يجري الآن هو الانتقال من الذكاء الاصطناعي باعتباره منتجًا تستخدمه، إلى بيئة كاملة تعيش فيها. باتت الأنظمة الذكية تتغلغل في كل طبقة من حياتنا المهنية والشخصية — لا كروبوتات دردشة تفتحها وتغلقها، بل كذكاء دائم الحضور يعرف سياقك، ويستشرف احتياجاتك، ويتصرف نيابةً عنك.</p>
+
+  <div class="callout">
+    <p>«السؤال لم يعد: هل الذكاء الاصطناعي قادر؟ السؤال الحقيقي: هل نحن مستعدون لاتخاذ القرارات الصحيحة بشأنه — أخلاقيًا وسياسيًا وشخصيًا؟»</p>
+  </div>
+
+  <h2 class="section-heading">أربعة مجالات يُعاد تشكيلها الآن</h2>
+
+  <div class="topic-grid">
+    <div class="topic-card">
+      <div class="topic-icon"><i class="ti ti-stethoscope" aria-hidden="true"></i></div>
+      <p class="topic-title">الطب وعلم الأحياء</p>
+      <p class="topic-desc">يُصمّم الذكاء الاصطناعي بروتينات جديدة، ويتنبأ بالأمراض قبل ظهور الأعراض بسنوات، ويُخصّص العلاج حتى مستوى الجينوم.</p>
+    </div>
+    <div class="topic-card">
+      <div class="topic-icon"><i class="ti ti-school" aria-hidden="true"></i></div>
+      <p class="topic-title">التعليم</p>
+      <p class="topic-desc">قد يحظى كل طالب بمعلم صبور وموسوعي، متاح على مدار الساعة، ومُصمَّم خصيصًا لأسلوب تعلّمه.</p>
+    </div>
+    <div class="topic-card">
+      <div class="topic-icon"><i class="ti ti-building-factory" aria-hidden="true"></i></div>
+      <p class="topic-title">الطاقة والمناخ</p>
+      <p class="topic-desc">من تحسين شبكات الكهرباء لحظيًا إلى تصميم مواد جديدة لتحويل الطاقة الشمسية، قد يكون الذكاء الاصطناعي أقوى حليف لمواجهة أزمة المناخ.</p>
+    </div>
+    <div class="topic-card">
+      <div class="topic-icon"><i class="ti ti-users" aria-hidden="true"></i></div>
+      <p class="topic-title">العمل والإبداع</p>
+      <p class="topic-desc">أعلى المهارات قيمةً في العقد القادم ليست البرمجة أو تحليل البيانات — بل معرفة كيف تُفكّر جنبًا إلى جنب مع الذكاء الاصطناعي.</p>
+    </div>
+  </div>
+
+  <h2 class="section-heading">الخط الزمني لما هو قادم</h2>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">الآن — ٢٠٢٧</p>
+      <p class="tl-text">وكلاء الذكاء الاصطناعي يؤدون مهام متعددة الخطوات باستقلالية. التعاون مع الذكاء الاصطناعي يصبح مهارة أساسية، لا رفاهية اختيارية.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">٢٠٢٧ — ٢٠٣٠</p>
+      <p class="tl-text">الاكتشاف العلمي يتسارع بشكل مذهل. الذكاء الاصطناعي يُسهم في اختراقات في الأدوية والمواد والطاقة كانت ستستغرق عقودًا.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">٢٠٣٠ — ٢٠٣٥</p>
+      <p class="tl-text">الحدود بين الذكاء الرقمي والمادي يتلاشى. روبوتات موجّهة بذكاء اصطناعي متقدم تعمل في المصانع والمستشفيات والمنازل.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-year">ما بعد ٢٠٣٥</p>
+      <p class="tl-text">طبيعة الذكاء نفسها تصبح سؤالًا فلسفيًا وسياسيًا عميقًا. من يحكم الذكاء الاصطناعي؟ وقيم من يحمل؟</p>
+    </div>
+  </div>
+
+  <h2 class="section-heading">المخاطر التي لا يمكن تجاهلها</h2>
+
+  <p class="body-text">التفاؤل تجاه الذكاء الاصطناعي مشروع — لكن فقط حين يُقترن بصدق واضح حول المخاطر. التضليل على نطاق واسع، والتحيز الخوارزمي المُدمج في القرارات الحساسة، والاضطراب الاقتصادي الذي يطال أكثر المجتمعات هشاشةً، وتركّز قدرات الذكاء الاصطناعي في أيدي قلة — ليست مخاوف افتراضية. إنها تحدث الآن.</p>
+
+  <p class="body-text">المنظمات والحكومات التي ترسم ملامح الحقبة القادمة تتخذ قرارات مصيرية الآن — بشأن الشفافية، واختبار السلامة، والوصول المفتوح، والمساءلة. هذه القرارات تستحق اهتمامًا عامًا ورقابة ديمقراطية، لا نقاشًا تقنيًا خلف أبواب موصدة.</p>
+
+  <div class="callout">
+    <p>«سلامة الذكاء الاصطناعي ليست قيدًا على التقدم. إنها الشرط الأساسي لتقدم يستحق هذا الاسم فعلًا.»</p>
+  </div>
+
+  <h2 class="section-heading">ما يمكنك فعله اليوم</h2>
+
+  <p class="body-text">مستقبل الذكاء الاصطناعي ليس شيئًا يحدث لك. إنه شيء تُشارك في تشكيله — من خلال الأدوات التي تختارها، والشركات التي تدعمها، والسياسات التي تطالب بها، والحوارات التي تُجريها. ابدأ بفهم كيف تعمل هذه الأنظمة فعلًا. جرّبها بجدية. وفكّر بعين ناقدة فيما تكسبه وما تخسره.</p>
+
+  <p class="body-text">الناجحون في عالم مشبع بالذكاء الاصطناعي ليسوا من يخافونه، ولا من يُسلّمون له بلا تفكير. بل هم من يُطوّرون علاقة دقيقة ومدروسة وفاعلة معه — أناس قادرون على طرح أسئلة أفضل، واتخاذ قرارات أرشد، ومساءلة الذكاء الاصطناعي على قيم إنسانية حقيقية.</p>
+
+  <div class="cta-bar">
+    <p class="cta-title">هل تريد التعمق أكثر في أي من هذه المواضيع؟</p>
+    <p class="cta-sub">اطرح سؤالًا وواصل الحوار</p>
+    <button class="cta-btn" onclick="sendPrompt('أخبرني أكثر عن تأثير الذكاء الاصطناعي على مجالي المهني ومستقبل مسيرتي')">
+      استكشف المزيد ←
+    </button>
+  </div>
+</div>
